@@ -32,20 +32,20 @@
 
 //variaveis da conexão do banco dados
 
-$servername = "localhost";
-$username = "felipe";
-$password = "123";
-$dbname = "nomedobanco"; // nome do banco de dados que será usado
+$servidor = "localhost";
+$usuario = "usuariodb";
+$senha = "senhadb";
+$nomedb = "nomedobancodados"; // nome do banco de dados que será usado
 
 // Cria a conexão com o banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servidor, $usuario, $senha, $nomedb);
 
 // Checa a conexão
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-echo "Conectado ao banco de dados";
+echo "Conectado ao banco de dados"."<br>";
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -57,10 +57,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Insere os dados no banco de dados
   $sql = "INSERT INTO alunos (nome, sobrenome, turma) VALUES ('$nome', '$sobrenome', '$turma')";
   if ($conn->query($sql) === TRUE) {
-    echo "Dados inseridos com sucesso";
+    echo "Dados inseridos com sucesso"."<br>";
   } else {
     echo "Erro ao inserir dados: " . $conn->error;
   }
+}
+
+//visualiza tabela
+$sql = "SELECT nome, sobrenome, turma FROM alunos";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "nome: " . $row["nome"]. " - sobrenome: " . $row["sobrenome"]. " turma" . $row["turma"]. "<br>";
+  }
+} else {
+  echo "0 resultados tabela vazia";
 }
 
 $conn->close();
