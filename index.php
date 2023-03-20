@@ -11,7 +11,7 @@
 <H1>
   <?php 
     //teste do php
-    echo "PHP funcionando";
+    echo "PHP funcionando ok";
   ?>
 </H1>
 
