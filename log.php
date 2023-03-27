@@ -47,12 +47,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["user_id"] = $row["id"];
 
+        echo "bem vindo";
+
         // Redireciona para a página inicial
         header("Location: cadastro.php");
         exit();
     } else {
         // Exibe uma mensagem de erro caso o usuário e senha não correspondam a um registro
         $login_error = "Nome de usuário ou senha inválidos.";
+        echo $login_error;
     }
 }
 
