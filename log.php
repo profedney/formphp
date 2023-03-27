@@ -12,7 +12,7 @@
     <?php if (isset($login_error)) { ?>
         <p><?php echo $login_error; ?></p>
     <?php } ?>
-    <form method="post">
+    <form action=""method="post">
         <label for="username">Nome de usuário:</label>
         <input type="text" name="username" required>
         <br>
